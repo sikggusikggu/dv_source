@@ -1,0 +1,41 @@
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width">
+    <meta charset="utf=8">
+    <script>
+        // 여기서부터
+        var connection = new WebSocket('ws://' + location.hostname + ':81/', ['arduino']);
+        connection.onopen = function () { connection.send('Connect ' + new Date()); };
+        connection.onerror = function (error) { console.log('WebSocket Error ', error); };
+        connection.onmessage = function (e) {
+            console.log('Server: ', e.data);
+            document.getElementById('recv').value = e.data;
+        };
+        // 여기까지는 무조건 있어야함
+
+        function sendRGB() {
+            var r = parseInt(document.getElementById('r').value).toString(16);
+            var g = parseInt(document.getElementById('g').value).toString(16);
+            var b = parseInt(document.getElementById('b').value).toString(16);
+            if (r.length < 2) { r = '0' + r; }
+            if (g.length < 2) { g = '0' + g; }
+            if (b.length < 2) { b = '0' + b; }
+            var rgb = '#' + r + g + b;
+            console.log('RGB: ' + rgb);
+            // 웹 소켓을 이용해서 클라이언트에서 서버쪽으로 전송하는 함수
+            connection.send(rgb);
+        }
+        function sen  d_msg() {
+            connection.send("식꾸식꾸포에버");
+        }
+    </script>
+</head>
+
+<body>
+    식꾸식꾸
+    <input type="button" value="메세지전송" onclick="send_msg()"></br>
+    <input id="recv" type="text">
+</body>
+
+</html>
