@@ -1,10 +1,16 @@
-html, body, a, button {
+a, button {
   all: unset;
   margin: 0;
   padding: 0;
 }
 
-p, h1, h2, h3 {
+html, body, div, p, h1, h2, h3 {
   padding: 0px;
   margin: 0px;
+}
+
+li, ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
