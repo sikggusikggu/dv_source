@@ -1,8 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 
-export default function CharacterBlock() {
-  const nickName = "뽀둥이";
+export default function CharacterBlock({ nickName }) {
   return (
     <>
       <div css={characterBlock}>

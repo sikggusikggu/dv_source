@@ -1,29 +1,26 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 
-function Navigate(props) {
+function Navigate({ nickName }) {
   return (
     <div css={[contentsBox]}>
-      <ul css={[ulAlign]}>
-        <li>마이페이지</li>
-        <li>커뮤니티</li>
-        <li>로그아웃</li>
-      </ul>
+      <button css={btnStyle}>내 {nickName} 자랑하러 가기</button>
     </div>
   );
 }
 
 const contentsBox = css`
-  width: 100%;
+  width: 80%;
   height: 3rem;
-  background: #efefef;
-  line-height: 2rem;
+  margin: 0 auto 1rem;
 `;
 
-const ulAlign = css`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
+const btnStyle = css`
+  height: 3rem;
+  background: #efefef;
+  line-height: 3rem;
+  text-align: center;
+  font-size: 1rem;
 `;
 
 export default Navigate;

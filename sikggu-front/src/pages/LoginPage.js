@@ -10,7 +10,6 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import { logo } from "asset/index";
-import { async } from "@firebase/util";
 
 const LogInPage = () => {
   const [email, setEmail] = useState("");
@@ -63,7 +62,7 @@ const LogInPage = () => {
   };
   return (
     <div css={defaultFrame}>
-      <img css={logoStyle} src={logo} />
+      <img css={logoStyle} src={logo} alt="메인 캐릭터" />
       <p css={serviceName}>식꾸식꾸</p>
       <form css={formContainer} onSubmit={onSubmit}>
         <input
@@ -128,7 +127,7 @@ const formContainer = css`
 `;
 
 const inputStyle = css`
-  width: 13rem;
+  width: 13.5rem;
   margin: 0 auto 0.3rem;
 `;
 

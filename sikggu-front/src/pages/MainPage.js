@@ -7,15 +7,16 @@ import Navigate from "components/Navigate";
 import StatusBlock from "components/StatusBlock";
 
 function MainPage() {
+  const nickName = "뽀둥이";
+
   return (
     <div css={defaultFrame}>
       {/* <div css={styleGuide} /> */}
       <Header />
-      <CharacterBlock />
+      <CharacterBlock nickName={nickName} />
       <ControlButton />
       <StatusBlock />
       {/* <div css={calenderBlock}>식꾸식꾸 달력 블록</div> */}
-      <Navigate />
     </div>
   );
 }

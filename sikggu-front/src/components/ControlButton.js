@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 function ControlButton() {
   const [motorStat, setMoterStat] = useState(false);
@@ -66,6 +67,9 @@ function ControlButton() {
       >
         빛 주기
       </button>
+      <Link css={moterButton} to="/Cummunity">
+        자랑하기
+      </Link>
     </div>
   );
 }
@@ -76,12 +80,12 @@ const container = css`
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  width: 10rem;
+  width: 18rem;
   margin: 2rem auto 0;
 `;
 
 const moterButton = css`
-  width: 50%;
+  width: 70%;
   text-align: center;
   font-size: 1rem;
   &:hover {
