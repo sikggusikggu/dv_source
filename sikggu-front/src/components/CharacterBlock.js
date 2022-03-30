@@ -2,43 +2,58 @@
 import { css } from "@emotion/react";
 
 export default function CharacterBlock() {
+  const nickName = "뽀둥이";
   return (
-    <div css={characterBlock}>
-      <div css={nicknameBlock}>나의 귀요미 식물</div>
-      <img
-        alt="캐릭터 이미지"
-        css={gifFrame}
-        src="https://blog.kakaocdn.net/dn/c6pAkf/btrn4rgw5la/7m06GPUMq1155ou7EEYo21/img.gif"
-      />
-      <div css={statusMessage}>
-        <p>나의 귀요미 식물이 너무 더워요!</p>
-        <p>나의 귀요미 식물이 갈증을 느끼고 있어요!</p>
+    <>
+      <div css={characterBlock}>
+        <img
+          alt="캐릭터 이미지"
+          css={gifFrame}
+          src={require("asset/Default.png")}
+        />
       </div>
-    </div>
+      <div css={nicknameBlock}>{nickName}</div>
+      <div css={statusMessage}>
+        <p>{nickName}는 지금 건강해요!</p>
+        <p>쾌적한 날씨에 기분이 아주 좋은 상태네요.</p>
+      </div>
+    </>
   );
 }
 
 const characterBlock = css`
-  width: 100%;
-  background-color: #efefef;
+  width: 18rem;
+  height: 18rem;
+  background-color: #fff;
+  border-radius: 50%;
+  margin: 0 auto;
 `;
 
 const nicknameBlock = css`
   width: 100%;
   height: 30px;
+  padding: 0.5rem;
   line-height: 30px;
-  padding-left: 5px;
+  margin: 0 auto 1rem auto;
+  text-align: center;
+  font-size: 1.2rem;
   font-weight: bold;
-  font-size: 15px;
 `;
 
 const gifFrame = css`
-  width: 100%;
+  width: 18rem;
+  margin: 0 auto;
   display: block;
 `;
 
 const statusMessage = css`
+  width: 20rem;
+  margin: 0 auto;
+  padding: 1rem;
+  font-weight: 500;
   font-size: 13px;
   line-height: 20px;
-  padding-left: 5px;
+  border-radius: 1rem;
+  background-color: #fff;
+  text-align: center;
 `;

@@ -1,5 +1,5 @@
-import './App.css';
-import MainPage from './page/MainPage';
+import "./App.css";
+import MainPage from "./pages/MainPage";
 
 function App() {
   return (
