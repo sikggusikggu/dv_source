@@ -12,7 +12,9 @@ export default function Header() {
   };
   return (
     <div css={header}>
-      <div css={logo}>식꾸식꾸</div>
+      <a href="/" css={logo}>
+        식꾸식꾸
+      </a>
       <button css={btnStyle} onClick={onLogOutClick}>
         로그아웃
       </button>
