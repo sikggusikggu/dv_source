@@ -13,7 +13,7 @@ export default function Header() {
   return (
     <div css={header}>
       <a href="/" css={logo}>
-        식꾸식꾸
+        <p>식꾸식꾸</p>
       </a>
       <button css={btnStyle} onClick={onLogOutClick}>
         로그아웃
@@ -24,7 +24,7 @@ export default function Header() {
 
 const header = css`
   position: relative;
-  width: 100%;
+  width: 20rem;
   padding: 1rem;
   margin: 0 auto;
   box-sizing: border-box;

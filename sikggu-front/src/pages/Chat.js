@@ -81,8 +81,8 @@ const Chat = ({ userObj }) => {
 };
 
 const defaultFrame = css`
-  min-width: 396px;
-  min-height: 90vh;
+  width: 20rem;
+  min-height: 100vh;
   hight: 100%;
   margin: 0 auto;
 `;
