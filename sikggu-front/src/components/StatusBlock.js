@@ -2,7 +2,26 @@
 import { css } from "@emotion/react";
 import { light, nutrients, temp, water } from "asset/index";
 
-export default function StatusBlock() {
+export default function StatusBlock({ plantData, plantMode }) {
+  function makeMessage(how, _stat) {
+    if (_stat === "low") {
+      if (how === "light") return "어두워요";
+      if (how === "temp") return "추워요";
+      if (how === "water") return "목말라요";
+      if (how === "nutrients") return "배고파요";
+    } else if (_stat === "normal") {
+      if (how === "light") return "딱 좋아요";
+      if (how === "temp") return "흡족해요";
+      if (how === "water") return "적당해요";
+      if (how === "nutrients") return "만족해요";
+    } else {
+      if (how === "light") return "눈부셔요";
+      if (how === "temp") return "더워요";
+      if (how === "water") return "과해요";
+      if (how === "nutrients") return "배불러요";
+    }
+  }
+
   function progressBar(stat) {
     let progress;
     if (stat === "low") {
@@ -46,10 +65,32 @@ export default function StatusBlock() {
     <div css={statusBlock}>
       <div css={stateFont}>STATE</div>
       <ul css={listContainer}>
-        {liBox(light, "빛", "딱 좋아요", "normal")}
-        {liBox(temp, "온도", "흡족해요", "low")}
-        {liBox(water, "수분", "적당해요", "high")}
-        {liBox(nutrients, "영양", "만족해요", "normal")}
+        {liBox(
+          light,
+          "빛",
+          makeMessage("light", plantData.light),
+          plantData.light
+        )}
+        {liBox(
+          temp,
+          "온도",
+          makeMessage("temp", plantData.temp),
+          plantData.temp
+        )}
+        {liBox(
+          water,
+          "수분",
+          makeMessage("water", plantData.water),
+          "high",
+          plantData.water
+        )}
+        {liBox(
+          nutrients,
+          "영양",
+          makeMessage("nutrients", plantData.nutrients),
+          "normal",
+          plantData.nutrients
+        )}
       </ul>
     </div>
   );

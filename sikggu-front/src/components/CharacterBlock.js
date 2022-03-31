@@ -1,23 +1,58 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
+import { useState } from "react";
 
-export default function CharacterBlock({ nickName }) {
-  return (
-    <>
-      <div css={characterBlock}>
-        <img
-          alt="캐릭터 이미지"
-          css={gifFrame}
-          src={require("asset/Default.png")}
-        />
-      </div>
-      <div css={nicknameBlock}>{nickName}</div>
-      <div css={statusMessage}>
-        <p>{nickName}는 지금 건강해요!</p>
-        <p>쾌적한 날씨에 기분이 아주 좋은 상태네요.</p>
-      </div>
-    </>
-  );
+export default function CharacterBlock({ nickName, plantData }) {
+  function divBox(img, msg1, msg2) {
+    return (
+      <>
+        <div css={characterBlock}>
+          <img alt="캐릭터 이미지" css={gifFrame} src={img} />
+        </div>
+        <div css={nicknameBlock}>{nickName}</div>
+        <div css={statusMessage}>
+          <p>{msg1}</p>
+          <p>{msg2}</p>
+        </div>
+      </>
+    );
+  }
+
+  function classifyPlantMode() {
+    if (plantData.light === "low") {
+      return divBox(
+        require("asset/lowLight.png"),
+        `${nickName}가 그늘에 너무 오래 있었어요.`,
+        `어서 햇빛을 보여주세요.`
+      );
+    } else if (plantData.temp === "high") {
+      return divBox(
+        require("asset/highTemp.png"),
+        `${nickName}가 더워하고 있어요!`,
+        `신선한 곳으로 데려가 주세요.`
+      );
+    } else if (plantData.water === "high") {
+      return divBox(
+        require("asset/highWater.png"),
+        `너무 축축해서 곰팡이가 괴롭히네요.`,
+        `${nickName}가 건조해질 수 있게 해주세요.`
+      );
+    } else if (plantData.nutrients === "low") {
+      return divBox(
+        require("asset/lowNut.png"),
+        `${nickName}가 배가 고파요.`,
+        `영양실조에 걸리지 않게 영양을 챙겨주세요.`
+      );
+    } else {
+      return divBox(
+        require("asset/Default.png"),
+        `${nickName}는 지금 건강해요!`,
+        `쾌적한 날씨에 기분이 아주 좋은 상태네요.`
+      );
+    }
+  }
+
+  return <>{classifyPlantMode()}</>;
 }
 
 const characterBlock = css`

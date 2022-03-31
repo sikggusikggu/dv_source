@@ -3,19 +3,32 @@ import { css } from "@emotion/react";
 import CharacterBlock from "components/CharacterBlock";
 import ControlButton from "components/ControlButton";
 import Header from "components/Header";
-import Navigate from "components/Navigate";
 import StatusBlock from "components/StatusBlock";
+import { dbService } from "fbase";
+import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
+import { useEffect, useState } from "react";
 
 function MainPage() {
   const nickName = "뽀둥이";
 
+  const [plantData, setPlantData] = useState({});
+  useEffect(() => {
+    const q = query(collection(dbService, "siku"), orderBy("time", "desc"));
+    onSnapshot(q, (snapshot) => {
+      const newArr = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setPlantData(newArr[newArr.length - 1]);
+    });
+  }, []);
   return (
     <div css={defaultFrame}>
       {/* <div css={styleGuide} /> */}
       <Header />
-      <CharacterBlock nickName={nickName} />
+      <CharacterBlock nickName={nickName} plantData={plantData} />
       <ControlButton />
-      <StatusBlock />
+      <StatusBlock plantData={plantData} />
       {/* <div css={calenderBlock}>식꾸식꾸 달력 블록</div> */}
     </div>
   );
