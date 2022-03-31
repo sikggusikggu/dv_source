@@ -35,7 +35,9 @@ function MainPage() {
 }
 
 const defaultFrame = css`
-  width: 396px;
+  width: 100%;
+  min-width: 396px;
+  height: 100%;
   margin: 0 auto;
   background-color: rgba(207, 250, 247, 0.51);
 `;

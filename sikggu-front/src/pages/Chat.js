@@ -81,8 +81,9 @@ const Chat = ({ userObj }) => {
 };
 
 const defaultFrame = css`
-  width: 396px;
+  min-width: 396px;
   min-height: 90vh;
+  hight: 100%;
   margin: 0 auto;
 `;
 
@@ -90,7 +91,7 @@ const minHeight = css`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  height: 80vh;
+  min-height: 80vh;
 `;
 
 const formStyle = css`
@@ -100,6 +101,7 @@ const formStyle = css`
   height: 4rem;
   border: 1px solid #eee;
   border-radius: 0.5rem;
+  margin-bottom: 2rem;
   padding: 0.5rem;
   padding-bottom: 1rem;
   box-sizing: border-box;
