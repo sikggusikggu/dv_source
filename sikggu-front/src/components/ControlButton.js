@@ -89,18 +89,18 @@ const moterButton = css`
   text-align: center;
   font-size: 1rem;
   &:hover {
-    color: #0617d4;
+    color: #adadad;
   }
 `;
 
 const waterButton = css`
   &:hover {
-    color: #0617d4;
+    color: #adadad;
   }
 `;
 
 const lightButton = css`
   &:hover {
-    color: #d43306;
+    color: #adadad;
   }
 `;

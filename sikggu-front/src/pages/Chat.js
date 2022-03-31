@@ -10,6 +10,7 @@ import {
   orderBy,
 } from "firebase/firestore";
 import ChatOwn from "components/ChatOwn";
+import Header from "components/Header";
 
 const Chat = ({ userObj }) => {
   const [nweet, setNweet] = useState("");
@@ -50,39 +51,46 @@ const Chat = ({ userObj }) => {
   console.log(nweet.creatorId);
   console.log();
   return (
-    <div css={defaultFrame}>
-      <div>
-        {nweets.map((nweet) => (
-          <ChatOwn
-            key={nweet.id}
-            nweetObj={nweet}
-            isOwner={nweet.creatorId === userObj.uid}
-          />
-        ))}
-      </div>
-      <form css={formStyle} onSubmit={onSubmit}>
-        <input
-          value={nweet}
-          css={inputStyle}
-          onChange={onChange}
-          type="text"
-          placeholder="What's on your mind?"
-        />
-        <div css={toolBox}>
-          <input css={sendBtnStyle} type="submit" value="글 올리기" />
+    <>
+      <div css={defaultFrame}>
+        <Header />
+        <div css={minHeight}>
+          {nweets.map((nweet) => (
+            <ChatOwn
+              key={nweet.id}
+              nweetObj={nweet}
+              isOwner={nweet.creatorId === userObj.uid}
+            />
+          ))}
         </div>
-      </form>
-    </div>
+        <form css={formStyle} onSubmit={onSubmit}>
+          <input
+            value={nweet}
+            css={inputStyle}
+            onChange={onChange}
+            type="text"
+            placeholder="What's on your mind?"
+          />
+          <div css={toolBox}>
+            <input css={sendBtnStyle} type="submit" value="글 올리기" />
+          </div>
+        </form>
+      </div>
+    </>
   );
 };
 
 const defaultFrame = css`
+  width: 396px;
+  min-height: 90vh;
+  margin: 0 auto;
+`;
+
+const minHeight = css`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  width: 396px;
-  min-height: 100vh;
-  margin: 0 auto;
+  height: 80vh;
 `;
 
 const formStyle = css`
