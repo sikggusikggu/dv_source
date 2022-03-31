@@ -91,7 +91,7 @@ const minHeight = css`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  min-height: 80vh;
+  min-height: 83vh;
 `;
 
 const formStyle = css`
