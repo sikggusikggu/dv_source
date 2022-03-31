@@ -101,7 +101,7 @@ const formStyle = css`
   height: 4rem;
   border: 1px solid #eee;
   border-radius: 0.5rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   padding: 0.5rem;
   padding-bottom: 1rem;
   box-sizing: border-box;
