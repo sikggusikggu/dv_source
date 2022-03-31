@@ -83,7 +83,7 @@ void loop()
     Serial.printf("Set Temperature... %s\n", Firebase.setInt(fbdo, F("/info/water"), water) ? "ok" : fbdo.errorReason().c_str());
     Serial.printf("Get Temperature... %s\n", Firebase.getInt(fbdo, F("/info/water")) ? String(fbdo.to<float>()).c_str() : fbdo.errorReason().c_str());
 
-    if (Firebase.getInt(fbdo, "/doit/motor/do"))
+    if (Firebase.getInt(fbdo, "/doit/moter/do"))
     {
         if (fbdo.dataTypeEnum() == fb_esp_rtdb_data_type_integer)
         {
@@ -94,48 +94,47 @@ void loop()
             }
             else
             {
-                digitalWrite(led_R, ROW);
+                digitalWrite(led_R, LOW);
             }
         }
     }
-}
-else
-{
-    Serial.println(fbdo.errorReason());
-}
-
-if (Firebase.getInt(fbdo, "/doit/light/do"))
-{
-    if (fbdo.dataTypeEnum() == fb_esp_rtdb_data_type_integer)
+    else
     {
-        Serial.println(fbdo.to<int>());
-        if (fbdo.to<int>() == 1)
+        Serial.println(fbdo.errorReason());
+    }
+
+    if (Firebase.getInt(fbdo, "/doit/light/do"))
+    {
+        if (fbdo.dataTypeEnum() == fb_esp_rtdb_data_type_integer)
         {
-            digitalWrite(pump_R, HIGH);
-        }
-        else
-        {
-            digitalWrite(pump_R, ROW);
+            Serial.println(fbdo.to<int>());
+            if (fbdo.to<int>() == 1)
+            {
+                digitalWrite(pump_R, HIGH);
+            }
+            else
+            {
+                digitalWrite(pump_R, LOW);
+            }
         }
     }
-}
-else
-{
-    Serial.println(fbdo.errorReason());
-}
+    else
+    {
+        Serial.println(fbdo.errorReason());
+    }
 
-FirebaseJson json;
-if (count == 0)
-{
-    json.set("value/round/" + String(count), F("cool!"));
-    json.set(F("vaue/ts/.sv"), F("timestamp"));
-    Serial.printf("Set json... %s\n", Firebase.set(fbdo, F("/test/json"), json) ? "ok" : fbdo.errorReason().c_str());
-}
-else
-{
-    json.add(String(count), "smart!");
-    Serial.printf("Update node... %s\n", Firebase.updateNode(fbdo, F("/test/json/value/round"), json) ? "ok" : fbdo.errorReason().c_str());
-}
-Serial.println();
-count++;
+    FirebaseJson json;
+    if (count == 0)
+    {
+        json.set("value/round/" + String(count), F("cool!"));
+        json.set(F("vaue/ts/.sv"), F("timestamp"));
+        Serial.printf("Set json... %s\n", Firebase.set(fbdo, F("/test/json"), json) ? "ok" : fbdo.errorReason().c_str());
+    }
+    else
+    {
+        json.add(String(count), "smart!");
+        Serial.printf("Update node... %s\n", Firebase.updateNode(fbdo, F("/test/json/value/round"), json) ? "ok" : fbdo.errorReason().c_str());
+    }
+    Serial.println();
+    count++;
 }
