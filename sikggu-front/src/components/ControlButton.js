@@ -2,6 +2,7 @@
 import { css } from "@emotion/react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { getDatabase, ref, set } from "firebase/database";
 
 function ControlButton() {
   const [motorStat, setMoterStat] = useState(false);
@@ -10,44 +11,31 @@ function ControlButton() {
   function controlMoter() {
     if (motorStat) {
       setMoterStat(false);
-      fetch("http://heom.duckdns.org/moterOff")
-        .then((res) => res.text())
-        .then((result) => {
-          if (result.success) {
-            console.log(result);
-          }
-        });
+      const db = getDatabase();
+      set(ref(db, "doit/moter"), {
+        do: 0,
+      });
     } else {
       setMoterStat(true);
-      fetch("http://heom.duckdns.org/moterOn")
-        .then((res) => res.text())
-        .then((result) => {
-          if (result.success) {
-            console.log(result);
-          }
-        });
+      const db = getDatabase();
+      set(ref(db, "doit/moter"), {
+        do: 1,
+      });
     }
   }
-
   function controlLight() {
     if (lightStat) {
       setLightStat(false);
-      fetch("http://heom.duckdns.org/lightOff")
-        .then((res) => res.text())
-        .then((res) => {
-          if (res.success) {
-            console.log(`${res}`);
-          }
-        });
+      const db = getDatabase();
+      set(ref(db, "doit/light"), {
+        do: 0,
+      });
     } else {
       setLightStat(true);
-      fetch("http://heom.duckdns.org/lightOn")
-        .then((res) => res.text())
-        .then((res) => {
-          if (res.success) {
-            console.log(`${res}`);
-          }
-        });
+      const db = getDatabase();
+      set(ref(db, "doit/light"), {
+        do: 1,
+      });
     }
   }
 

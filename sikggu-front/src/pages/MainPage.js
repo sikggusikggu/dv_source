@@ -4,24 +4,41 @@ import CharacterBlock from "components/CharacterBlock";
 import ControlButton from "components/ControlButton";
 import Header from "components/Header";
 import StatusBlock from "components/StatusBlock";
-import { dbService } from "fbase";
-import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
+// import { dbService } from "fbase";
+// import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import { useEffect, useState } from "react";
+import { getDatabase, ref, child, get } from "firebase/database";
 
 function MainPage() {
   const nickName = "뽀둥이";
 
   const [plantData, setPlantData] = useState({});
+  // useEffect(() => {
+  //   const q = query(collection(dbService, "siku"), orderBy("time", "desc"));
+  //   onSnapshot(q, (snapshot) => {
+  //     const newArr = snapshot.docs.map((doc) => ({
+  //       id: doc.id,
+  //       ...doc.data(),
+  //     }));
+  //     setPlantData(newArr[newArr.length - 1]);
+  //   });
+  // }, []);
   useEffect(() => {
-    const q = query(collection(dbService, "siku"), orderBy("time", "desc"));
-    onSnapshot(q, (snapshot) => {
-      const newArr = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      setPlantData(newArr[newArr.length - 1]);
-    });
+    const dbRef = ref(getDatabase());
+    get(child(dbRef, `info/`))
+      .then((snapshot) => {
+        if (snapshot.exists()) {
+          console.log(snapshot.val());
+          setPlantData(snapshot.val());
+        } else {
+          console.log("No data available");
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }, []);
+
   return (
     <div css={defaultFrame}>
       {/* <div css={styleGuide} /> */}

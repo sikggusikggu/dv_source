@@ -1,6 +1,5 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import { useState } from "react";
 
 export default function CharacterBlock({ nickName, plantData }) {
   function divBox(img, msg1, msg2) {
@@ -19,25 +18,25 @@ export default function CharacterBlock({ nickName, plantData }) {
   }
 
   function classifyPlantMode() {
-    if (plantData.light === "low") {
+    if (plantData.light === -1) {
       return divBox(
         require("asset/lowLight.png"),
         `${nickName}가 그늘에 너무 오래 있었어요.`,
         `어서 햇빛을 보여주세요.`
       );
-    } else if (plantData.temp === "high") {
+    } else if (plantData.temp === 1) {
       return divBox(
         require("asset/highTemp.png"),
         `${nickName}가 더워하고 있어요!`,
         `신선한 곳으로 데려가 주세요.`
       );
-    } else if (plantData.water === "high") {
+    } else if (plantData.water === 1) {
       return divBox(
         require("asset/highWater.png"),
         `너무 축축해서 곰팡이가 괴롭히네요.`,
         `${nickName}가 건조해질 수 있게 해주세요.`
       );
-    } else if (plantData.nutrients === "low") {
+    } else if (plantData.nutrients === -1) {
       return divBox(
         require("asset/lowNut.png"),
         `${nickName}가 배가 고파요.`,

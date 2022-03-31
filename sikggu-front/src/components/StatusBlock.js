@@ -2,14 +2,14 @@
 import { css } from "@emotion/react";
 import { light, nutrients, temp, water } from "asset/index";
 
-export default function StatusBlock({ plantData, plantMode }) {
+export default function StatusBlock({ plantData }) {
   function makeMessage(how, _stat) {
-    if (_stat === "low") {
+    if (_stat === -1) {
       if (how === "light") return "어두워요";
       if (how === "temp") return "추워요";
       if (how === "water") return "목말라요";
       if (how === "nutrients") return "배고파요";
-    } else if (_stat === "normal") {
+    } else if (_stat === 0) {
       if (how === "light") return "딱 좋아요";
       if (how === "temp") return "흡족해요";
       if (how === "water") return "적당해요";
@@ -24,18 +24,17 @@ export default function StatusBlock({ plantData, plantMode }) {
 
   function progressBar(stat) {
     let progress;
-    if (stat === "low") {
+    if (stat === -1) {
       progress = css`
         width: 30%;
         background-color: #1072e2;
       `;
-    }
-    if (stat === "normal") {
+    } else if (stat === 0) {
       progress = css`
         width: 60%;
         background-color: #11c75e;
       `;
-    } else if (stat === "high") {
+    } else if (stat === 1) {
       progress = css`
         width: 100%;
         background-color: #ff2700;
@@ -81,14 +80,12 @@ export default function StatusBlock({ plantData, plantMode }) {
           water,
           "수분",
           makeMessage("water", plantData.water),
-          "high",
           plantData.water
         )}
         {liBox(
           nutrients,
           "영양",
           makeMessage("nutrients", plantData.nutrients),
-          "normal",
           plantData.nutrients
         )}
       </ul>
